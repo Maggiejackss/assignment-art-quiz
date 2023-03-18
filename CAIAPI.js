@@ -1,6 +1,10 @@
 const body = document.getElementById('body');
 const btn = document.getElementById('btn');
 const prompt = document.getElementById('prompt');
+const header = document.getElementById('header');
+const imgCont = document.getElementById('imgCont');
+const imgParent1 = document.getElementById('imgParent1');
+const imgParent2 = document.getElementById('imgParent2');
 
 imgArray = [];
 artistArray = [];
@@ -56,6 +60,7 @@ const handleClick = async () => {
   extractData(apiUrls);
   qAggInfo(imgArray);
   qBuildFunc(currentPg);
+  btn.className = 'hidden';
 }
 
 const qAggInfo = (imgArray) => {
@@ -63,7 +68,12 @@ const qAggInfo = (imgArray) => {
     // imgArray[Math.floor(Math.random() * imgArray.length)];
     // console.log(imgArray);
     const imgPick = imgArray.pop();
-    body.append(imgPick);
+    imgPick.className = `img${i}`;
+    if (i < 2){
+      imgParent1.append(imgPick);
+    } else {
+      imgParent2.append(imgPick);
+    }
     currentPg.push(imgPick);
   }
   shuffleArray(currentPg);
@@ -82,6 +92,10 @@ const qBuildFunc = (currentPg) => {
   const scrapeArtist = randomPick.getAttribute("data-artist");
   const question = `Which artwork was created by ${scrapeArtist}`;
   prompt.innerText = question;
+}
+
+const onClick = (e) => {
+  
 }
 
 //to total the number of points create a final string interp saying take sum of total points and add a zero to it (e.g. `your score is ${sum}0`)

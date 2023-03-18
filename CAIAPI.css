@@ -8,9 +8,32 @@
     background-color: rgb(238, 154, 228);
 }
 
+.prompt {
+    font-size: 1.5rem;
+}
+
 header {
+    display: flex;
+    flex-direction: column;
     font-size: 3rem;
-    align-self: center;
+    align-items: center;
+}
+
+img {
+    border: 3px solid black;
+    width: 150px;
+    height: 150px;
+}
+
+.imgCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imgParent {
+    display: flex;
+    
 }
 
 #btn {
@@ -21,19 +44,24 @@ header {
 
 .btnG {
     height: 100px;
-    width: 200px;
+    width: 150px;
     /* align-self: center; */
     margin: 5px;
     
 }
 
-.BtnBox {
-    align-self: center;
+.BtnBox, .BtnBox2 {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.BtnBox2 {
-    align-self: center;
+.btnParent {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
 }
+
 .Answer1 {
 background-color: red;
 }
@@ -51,3 +79,10 @@ background-color: red;
     background-color: forestgreen;
 }
 
+.hidden {
+    position: absolute; 
+    overflow: hidden; 
+    clip: rect(0 0 0 0); 
+    height: 1px; width: 1px; 
+    margin: -1px; padding: 0; border: 0; 
+}
