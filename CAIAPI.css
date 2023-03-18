@@ -1,0 +1,53 @@
+* {
+
+}
+
+.y-sticky {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(238, 154, 228);
+}
+
+header {
+    font-size: 3rem;
+    align-self: center;
+}
+
+#btn {
+    height: 20px;
+    width: 50px;
+    align-self: center;
+}
+
+.btnG {
+    height: 100px;
+    width: 200px;
+    /* align-self: center; */
+    margin: 5px;
+    
+}
+
+.BtnBox {
+    align-self: center;
+}
+
+.BtnBox2 {
+    align-self: center;
+}
+.Answer1 {
+background-color: red;
+}
+
+.Answer2 {
+    background-color: blue;
+
+}
+
+.Answer3 {
+    background-color: orange;
+}
+
+.Answer4 {
+    background-color: forestgreen;
+}
+
