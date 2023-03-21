@@ -5,6 +5,7 @@ const header = document.getElementById('header');
 const imgCont = document.getElementById('imgCont');
 const imgParent1 = document.getElementById('imgParent1');
 const imgParent2 = document.getElementById('imgParent2');
+const btnParent = document.getElementById('btnParent');
 
 imgArray = [];
 artistArray = [];
@@ -64,11 +65,11 @@ const handleClick = async () => {
 }
 
 const qAggInfo = (imgArray) => {
+  currentPg = [];
   for (let i = 0; i < 4; i++){
     // imgArray[Math.floor(Math.random() * imgArray.length)];
     // console.log(imgArray);
     const imgPick = imgArray.pop();
-    imgPick.className = `img${i}`;
     if (i < 2){
       imgParent1.append(imgPick);
     } else {
@@ -76,31 +77,62 @@ const qAggInfo = (imgArray) => {
     }
     currentPg.push(imgPick);
   }
-  shuffleArray(currentPg);
   console.log(currentPg);
+  return currentPg;
 }
 
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
+const setBtnLink = (currentPg) => {
+  const elements = body.querySelectorAll('button');
+  for (let i = 0; i < 4; i++){
+    const artistGrab = currentPg.shift();
+    console.log(artistGrab);
+    const artist = artistGrab.getAttribute('data-artist');
+    elements[i].setAttribute('data-artist', `${artist}`);
+  }
+
+}
+
+function shuffleArray(currentPg) {
+  for (let i = currentPg.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+      [currentPg[i], currentPg[j]] = [currentPg[j], currentPg[i]];
   }
 }
 
 const qBuildFunc = (currentPg) => {
+  setBtnLink(currentPg);
+  shuffleArray(currentPg);
+  // console.log(currentPg);
   const randomPick = currentPg.pop();
   const scrapeArtist = randomPick.getAttribute("data-artist");
   const question = `Which artwork was created by ${scrapeArtist}`;
   prompt.innerText = question;
+  return scrapeArtist;
 }
 
-const onClick = (e) => {
-  
+
+const onClick = (scrapeArtist) => {
+  const btnArray = btnCollector();
+  for (let i = 0; i <= 3; i++){
+    button = btnArray.pop();
+    buttonId = button.getAttribute('data-artist');
+    if (buttonId === scrapeArtist) {
+      console.log(correct);
+    }
+  }
+}
+
+const btnCollector = () => {
+  btnArray = [];
+  const buttons = body.querySelectorAll('button');
+  btnArray.push(buttons);
+  return btnArray;
 }
 
 //to total the number of points create a final string interp saying take sum of total points and add a zero to it (e.g. `your score is ${sum}0`)
 
 btn.addEventListener('click', handleClick);
+btnParent.addEventListener('click', onClick);
 // const iiif = data.config.iiif_url
 
 // "https://api.artic.edu/api/v1/artworks?page=1&page=100"
